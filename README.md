@@ -1,10 +1,10 @@
-# Agentic Tree View
+# Agentic Tree Search
 
 **A database-native approach to agentic knowledge retrieval.**
 
 > Three tools. One relational tree. Zero filesystem dependencies.
 
-Agentic Tree View is an architectural pattern for AI agents that need to retrieve information from a curated knowledge base. It replaces the common **Agentic File Search** approach (an agent navigating a tree of Markdown files via filesystem tools) with a **database-native tree** exposed through just three Semantic Kernel tools.
+Agentic Tree Search is an architectural pattern for AI agents that need to retrieve information from a curated knowledge base. It replaces the common **Agentic File Search** approach (an agent navigating a tree of Markdown files via filesystem tools) with a **database-native tree** exposed through just three Semantic Kernel tools.
 
 The result: centralized governance, native versioning, extensible search, transparent chunking, multi-tenancy, and a linear path to vector RAG — without expanding the agent's tool surface.
 
@@ -12,7 +12,7 @@ The result: centralized governance, native versioning, extensible search, transp
 
 ## TL;DR
 
-| | Agentic File Search | **Agentic Tree View** |
+| | Agentic File Search | **Agentic Tree Search** |
 |---|---|---|
 | Storage | Markdown files on disk | Relational tables (self-join) |
 | Updates | File edits + redeploy | `INSERT/UPDATE/DELETE` at runtime |
@@ -22,7 +22,7 @@ The result: centralized governance, native versioning, extensible search, transp
 | Multi-tenancy | Parallel folder trees + ACLs | Single `OrganizationId` column |
 | Tool surface | N filesystem tools | **3 stable KernelFunctions** |
 
-📄 Full white paper: [PDF](docs/Agentic_Tree_View_WhitePaper.pdf) · [DOCX](docs/Agentic_Tree_View_WhitePaper.docx)
+📄 Full white paper: [PDF](docs/Agentic_Tree_Search_WhitePaper.pdf) · [DOCX](docs/Agentic_Tree_Search_WhitePaper.docx)
 
 ---
 
@@ -32,7 +32,7 @@ The result: centralized governance, native versioning, extensible search, transp
 
 A relational database gives you production-grade full-text search **for free**: SQL Server `CONTAINS` / `FREETEXT`, PostgreSQL `tsvector`, MySQL `FULLTEXT`. Language-aware analyzers, stemming, thesauri, ranking — all already there, battle-tested, maintained by the engine vendor.
 
-On a plain filesystem *this does not exist*. You either live with `grep`-style substring matching (which is not search, it's pattern matching) or you build a parallel indexing pipeline with Lucene/Elastic/Meilisearch and pay the cost of keeping two systems in sync forever. Agentic Tree View inherits real search *by being on a database in the first place*.
+On a plain filesystem *this does not exist*. You either live with `grep`-style substring matching (which is not search, it's pattern matching) or you build a parallel indexing pipeline with Lucene/Elastic/Meilisearch and pay the cost of keeping two systems in sync forever. Agentic Tree Search inherits real search *by being on a database in the first place*.
 
 ### 2. Database-backed knowledge unifies content creation *and* consumption
 
@@ -175,8 +175,8 @@ Repo/
 ├── LICENSE                         MIT
 ├── .gitignore
 ├── docs/
-│   ├── Agentic_Tree_View_WhitePaper.pdf
-│   └── Agentic_Tree_View_WhitePaper.docx
+│   ├── Agentic_Tree_Search_WhitePaper.pdf
+│   └── Agentic_Tree_Search_WhitePaper.docx
 ├── src/
 │   └── KnowledgeBasePlugin.cs      Reference implementation (C# / Semantic Kernel)
 ├── sql/

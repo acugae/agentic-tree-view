@@ -1,6 +1,6 @@
 # Agent Flows
 
-Concrete walkthroughs of how an AI agent interacts with Agentic Tree View.
+Concrete walkthroughs of how an AI agent interacts with Agentic Tree Search.
 The agent only ever sees three tools: `GetKnowledgeMap`, `ReadNode`, `SearchNodes`.
 
 ---
