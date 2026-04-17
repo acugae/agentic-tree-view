@@ -26,6 +26,39 @@ The result: centralized governance, native versioning, extensible search, transp
 
 ---
 
+## Why this matters — four points that change the game
+
+### 1. Full-text search is native on a database, effectively impossible on a filesystem
+
+A relational database gives you production-grade full-text search **for free**: SQL Server `CONTAINS` / `FREETEXT`, PostgreSQL `tsvector`, MySQL `FULLTEXT`. Language-aware analyzers, stemming, thesauri, ranking — all already there, battle-tested, maintained by the engine vendor.
+
+On a plain filesystem *this does not exist*. You either live with `grep`-style substring matching (which is not search, it's pattern matching) or you build a parallel indexing pipeline with Lucene/Elastic/Meilisearch and pay the cost of keeping two systems in sync forever. Agentic Tree View inherits real search *by being on a database in the first place*.
+
+### 2. Database-backed knowledge unifies content creation *and* consumption
+
+When the knowledge base is a database, **any application** can read and write it: back-office UIs, editorial CMSs, ETL jobs, content moderation services, reporting tools, the agent itself. Authoring, approval, publication, analytics, and retrieval all speak the same query language against the same tables.
+
+A filesystem fragments this picture: agents read files, but authors need an editor, approvals need Git/PR tooling, analytics need a separate index, audit needs yet another system. Centralizing on a database collapses these silos into a single governed surface.
+
+### 3. The tree structure is preserved — organization doesn't get lost
+
+The self-join (`ParentId` referencing the same table) faithfully models a hierarchical tree inside a flat relational schema. A recursive CTE rebuilds the `FullPath` on demand, so the agent still sees a clean, human-readable structure like `Billing/Invoicing/VAT on Gas`.
+
+This is the point: **moving to a database does not mean losing the tree**. The mental model that makes filesystem-based agents work — domain, macro-topic, topic — is preserved exactly. What changes is the storage engine, not the cognitive structure the agent reasons about.
+
+### 4. Zero impact on the agent's tool interface
+
+The three `KernelFunction` tools (`GetKnowledgeMap`, `ReadNode`, `SearchNodes`) have the **same signatures** regardless of whether:
+
+- the underlying storage is a filesystem or a database,
+- content is atomic or chunked,
+- search is backed by `LIKE`, SQL Full-Text, or a vector store,
+- the corpus grows from dozens to millions of nodes.
+
+This is what makes the pattern a safe bet for production. The agent's prompts, the tool definitions, the conversation traces — all remain stable while the infrastructure behind them evolves freely. You can start with `LIKE`, migrate to `CONTAINS`, add embeddings, without ever touching the agent layer.
+
+---
+
 ## The idea in one picture
 
 ```
