@@ -1,0 +1,29 @@
+# Build output
+bin/
+obj/
+out/
+*.user
+*.suo
+
+# IDEs
+.vs/
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets / local config
+appsettings.Development.json
+appsettings.Local.json
+.env
+.env.local
+*.pfx
+
+# Logs
+*.log
+
+# Temp Office lockfiles
+~$*
