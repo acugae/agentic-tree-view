@@ -7,7 +7,7 @@ using System.ComponentModel;
 namespace OneAssistant.Plugins;
 
 /// <summary>
-/// Plugin Semantic Kernel per la Knowledge Base di Optima.
+/// Plugin Semantic Kernel per la Knowledge.
 ///
 /// STRUTTURA TABELLARE:
 ///   KnowledgeNode  → albero dei nodi (folder/file), sempre presente
